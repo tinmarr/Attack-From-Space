@@ -6,7 +6,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: true
+            debug: false
         }
     },
     scene: {
@@ -27,21 +27,30 @@ function create (){
 
   coins = this.physics.add.group();
 
-  bullets = new Group(this);
+  playerBullets = new Group(this);
+  enemyBullets = new Group(this);
+  allBullets = new Group(this);
   entities = new Group(this);
 
-  entities.add(new Player({scene:this}));
+  player = new Player({scene:this});
+  entities.add(player);
 
-  entities.add(new BasicEnemy({scene:this,x:64}));
+  for (var i=0;i<8;i++){
+    entities.add(new BasicEnemy({scene:this,x:32+32*2*i,y:32}));
+  }
+
+  this.physics.world.addListener('worldbounds', hitBounds)
+
+  playerHealthBar = this.add.rectangle(250, 595, 500, 10, 0xff0000);
 }
 
 function update (){
   entities.update();
+  playerHealthBar.destroy();
+  playerHealthBar = this.add.rectangle(250, 595, player.health * 5, 10, 0xff0000)
 }
 
-function hitBounds(sprite){
-  console.log(sprite);
-  var classboi = bullets.getClass(sprite);
-  console.log(classboi);
-  classboi.hitWorldBounds();
+function hitBounds(hit){
+  var spriteClass = allBullets.getClass(hit.gameObject);
+  spriteClass.hitWorldBounds();
 }
