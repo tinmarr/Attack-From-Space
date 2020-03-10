@@ -8,12 +8,12 @@ class Entity {
     this.sprite.body.immovable = true;
     this.waitTime = 0;
     this.scene.physics.add.collider(this.sprite, playerBullets.sprites, this.hit);
+    this.initial = {x:x,y:y};
   }
   hit(entitySprite, bulletSprite){
     entities.getClass(entitySprite).health -= allBullets.getClass(bulletSprite).damage;
     bulletSprite.destroy();
   }
-  shoot(){}
   move(){}
   update(){
     if (this.health <= 0){

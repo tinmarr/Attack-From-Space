@@ -38,8 +38,11 @@ function create (){
   for (var i=0;i<8;i++){
     entities.add(new BasicEnemy({scene:this,x:32+32*2*i,y:32}));
   }
+  for (i=0;i<8;i++){
+    entities.add(new BasicEnemy({scene:this,x:32+32*2*i,y:64+32}));
+  }
 
-  this.physics.world.addListener('worldbounds', hitBounds)
+  this.physics.world.addListener('worldbounds', hitBounds);
 
   playerHealthBar = this.add.rectangle(250, 595, 500, 10, 0xff0000);
 }
@@ -47,7 +50,7 @@ function create (){
 function update (){
   entities.update();
   playerHealthBar.destroy();
-  playerHealthBar = this.add.rectangle(250, 595, player.health * 5, 10, 0xff0000)
+  playerHealthBar = this.add.rectangle(250, 595, player.health * 5, 10, 0xff0000);
 }
 
 function hitBounds(hit){

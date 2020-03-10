@@ -16,15 +16,15 @@ class Player extends Entity {
   }
   move() {
     if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.A].isDown) {
-      this.sprite.setAccelerationX(-500);
+      this.sprite.setVelocityX(-100);
     } else if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.D].isDown) {
-      this.sprite.setAccelerationX(500);
+      this.sprite.setVelocityX(100);
     } else {
       if (Math.abs(this.sprite.body.velocity.x) <= 10){
         this.sprite.setAccelerationX(0);
         this.sprite.setVelocityX(0);
       } else {
-        this.sprite.setAccelerationX(-1*Math.sign(this.sprite.body.velocity.x)*500)
+        this.sprite.setAccelerationX(-1*Math.sign(this.sprite.body.velocity.x)*500);
       }
     }
     if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.SPACE].isDown) {
