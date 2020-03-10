@@ -1,7 +1,6 @@
 # Bullet Hell Game
 ### This game is a work in progress.
 This is a Galaga style shooter game using the Phaser game framework.
-#### To see the most recent version of the game during the WIP phase, go to [https://bullet-hell-game--tinmarr.repl.co](https://bullet-hell-game--tinmarr.repl.co)
 
 # Upcoming Features
 1. More enemies (Goal of 5-6 + A 2-3 bosses)
