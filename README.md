@@ -9,6 +9,11 @@ This is a Galaga style shooter game using the Phaser game framework.
 4. Upgrades
 
 # Changelog
+v0.4 March 11, 2020
+* Create weapons class and add three weapons
+* Add sprites
+* Add basic scoring system
+
 v0.3 March 10, 2020
 * Start working on weapons class
 * Added movement for basic enemy

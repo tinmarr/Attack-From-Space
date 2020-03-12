@@ -19,38 +19,65 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload (){
-
+	this.load.image('bullet','imgs/bullet.png');
+	this.load.image('player','imgs/blueBasic.png');
+	this.load.image('basicEnemy','imgs/redBasic.png');
+	this.load.image('background','imgs/background.png');
 }
 
 function create (){
+	// Background Specs
+	backgroundSpeed = 5;
+	background = this.add.tileSprite(250, 300, 500, 600, 'background');
+	
+	// Setup Inputs
   this.input.keyboard.addKeys('A,D,SPACE');
-
-  coins = this.physics.add.group();
-
+	
+	// Groups
   playerBullets = new Group(this);
   enemyBullets = new Group(this);
   allBullets = new Group(this);
   entities = new Group(this);
-
-  player = new Player({scene:this});
+	
+	// Player Setup
+  player = new Player({scene:this, animation: 'player'});
   entities.add(player);
-
-  for (var i=0;i<8;i++){
-    entities.add(new BasicEnemy({scene:this,x:32+32*2*i,y:32}));
+	
+	// Test Enemy Setup
+  for (var i=0;i<12;i++){
+  	if (i!==6){
+  		entities.add(new BasicEnemy({scene:this,x:35+35*i,y:18, animation:'basicEnemy'}));
+  		entities.add(new BasicEnemy({scene:this,x:35+35*i,y:35+18, animation:'basicEnemy'}));
+  		entities.add(new BasicEnemy({scene:this,x:35+35*i,y:(35*2)+18, animation:'basicEnemy'}));
+  	}
   }
-  for (i=0;i<8;i++){
-    entities.add(new BasicEnemy({scene:this,x:32+32*2*i,y:64+32}));
-  }
-
+  
+  // Bullet World Bounds Event
   this.physics.world.addListener('worldbounds', hitBounds);
 
-  playerHealthBar = this.add.rectangle(250, 595, 500, 10, 0xff0000);
+	// Health Bar
+  playerHealthBar = this.add.rectangle(250, 590, 500, 20, 0xff0000);
+  
+  // Score Variables and Text
+  scoreVars = [entities.sprites.length-1, player.health];
+  scoreText = this.add.text(250,580,'Score: 0');
+  scoreText.depth = 1;
+  scoreText.x = 250 - (scoreText.width/2);
 }
 
 function update (){
+	// Move BG
+	background.tilePositionY -= backgroundSpeed;
+	
+	// Update Players and Enemies
   entities.update();
+  
+  // Update Health Bar
   playerHealthBar.destroy();
-  playerHealthBar = this.add.rectangle(250, 595, player.health * 5, 10, 0xff0000);
+  playerHealthBar = this.add.rectangle(250, 590, (player.health/100) * 500, 20, 0xff0000);
+  
+  // Update Score
+  scoreText.text = 'Score: '+(100*(scoreVars[0] - (entities.sprites.length-1)) - 10*(scoreVars[1]-player.health));
 }
 
 function hitBounds(hit){
