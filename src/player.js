@@ -1,6 +1,6 @@
 class Player extends Entity {
-  constructor({ scene, x = 250, y = 550, animation = '', health = 100, gunType='starting'}) {
-    super({ scene: scene, x: x, y: y, animation: animation, health: health, gunType: gunType});
+  constructor(scene, x = 250, y = 550, animation = 'player', health = 100, gunType='starting') {
+		super(scene, x, y, animation, health, gunType);
     this.scene.physics.add.collider(this.sprite, enemyBullets.sprites, this.hit);
     this.scene.physics.add.collider(this.sprite, entities.sprites, this.hit);
     this.sprite.body.collideWorldBounds = true;
@@ -38,8 +38,6 @@ class Player extends Entity {
     }
     if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.SPACE].isDown) {
       this.weapon.shoot();
-    } else if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.SPACE].isUp) {
-      this.waitTime--;
     }
   }
 }
