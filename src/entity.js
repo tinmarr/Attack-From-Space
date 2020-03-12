@@ -1,5 +1,5 @@
 class Entity {
-  constructor({scene, x=-40, y=20, animation='', health=25, gunType='basic'}){
+  constructor(scene, x, y, animation, health, gunType){
     this.scene = scene;
     this.sprite = scene.physics.add.sprite(x, y, animation);
     this.health = health;
@@ -26,6 +26,7 @@ class Entity {
       entities.removeElement(this);
     } else {
       this.move();
+      this.weapon.waitTime--;
     }
   }
 }
