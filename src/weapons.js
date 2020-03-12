@@ -50,19 +50,19 @@ class SniperGun extends Weapon{
 
 class MediumGun extends Weapon {
 	constructor(holderBulletGroup, position, holderClass){
-		super(20, 100, 60, 'bullet', holderBulletGroup, position, holderClass);
+		super(20, 100, 100, 'bullet', holderBulletGroup, position, holderClass);
 	}
 }
 
 class HardGun extends Weapon {
 	constructor(holderBulletGroup, position, holderClass){
-		super(5, 100, 50, 'bullet', holderBulletGroup, position, holderClass);
+		super(30, 50, 150, 'bullet', holderBulletGroup, position, holderClass);
 	}
 }
 
 class Bomb extends Weapon {
 	constructor(holderBulletGroup, position, holderClass){
-		super(30, 50, 70, 'bullet', holderBulletGroup, position, holderClass);
+		super(30, 400, 50, 'bullet', holderBulletGroup, position, holderClass);
 	}
 	shoot(){
 		if (this.waitTime <= 0) {
