@@ -10,6 +10,11 @@ This is a Galaga style shooter game using the Phaser game framework.
 5. Upgrades
 
 # Changelog
+v0.7 March 13, 2020
+* Add a boss
+* Add a win screen
+* Add new gun
+
 v0.6 March 12, 2020
 * Add a level class
 * Add 2 starting levels

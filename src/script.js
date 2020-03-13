@@ -69,7 +69,7 @@ function update (){
         playerReloadBar = this.add.rectangle(250, 577, Math.sign((player.weapon.waitTime/player.weapon.fireRate)*500) === -1 ? 0 : (player.weapon.waitTime/player.weapon.fireRate)*500, 6, 0x00ff00);
 
         // Next Level
-        if (entities.sprites.length <= 1){
+        if (entities.sprites.length <= 1 && player.health > 0){
             backgroundSpeed = 20;
             if (levels.length === 1){
                 winText.visible = true;

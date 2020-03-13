@@ -30,6 +30,10 @@ class Entity {
         } else {
             this.move();
             this.weapon.waitTime--;
+            try{
+                this.weapon1.waitTime--;
+                this.weapon2.waitTime--;
+            } catch(err){};
         }
     }
 }

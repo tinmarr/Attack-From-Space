@@ -71,11 +71,16 @@ class Bomb extends Weapon {
                 this.holderBulletGroup.add(bullet);
                 allBullets.add(bullet);
 			}
-        this.waitTime = this.fireRate;
-    }
+            this.waitTime = this.fireRate;
+        }
 	}
 }
 
+class SemiAutoSniper extends Weapon {
+    constructor(holderBulletGroup, position, holderClass){
+		super(50, 50, 1000, 'bullet', holderBulletGroup, position, holderClass);
+	}
+}
 function stringToWeapon(stringType){
 	if (stringType == 'basic'){
 		return BasicGun;
@@ -91,5 +96,7 @@ function stringToWeapon(stringType){
 		return HardGun;
 	} else if (stringType == 'bomb'){
 		return Bomb;
-	}
+	} else if (stringType == 'supersniper'){
+        return SemiAutoSniper;
+    }
 }
