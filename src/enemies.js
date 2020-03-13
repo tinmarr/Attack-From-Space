@@ -84,4 +84,3 @@ class BomberEnemy extends Entity {
 		}
 	}
 }
-

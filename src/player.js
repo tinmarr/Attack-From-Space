@@ -37,7 +37,24 @@ class Player extends Entity {
         }
         }
         if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.SPACE].isDown) {
-        this.weapon.shoot();
+            this.weapon.shoot();
+        }
+    }
+    winMove(){
+        this.sprite.body.collideWorldBounds = false;
+        if (Math.abs(this.sprite.x-250)>10){
+            this.sprite.setVelocityX(Math.sign(250-this.sprite.x)*100);
+        } else {
+            this.sprite.setVelocityX(0);
+            this.sprite.setAccelerationY(-1000);
+        }
+        if (this.sprite.y < -50) {
+            win = true;
+            this.sprite.destroy();
+            entities.removeElement(this);
+            playerHealthBar.destroy();
+            playerReloadBar.destroy();
+            scoreText.destroy();
         }
     }
 }

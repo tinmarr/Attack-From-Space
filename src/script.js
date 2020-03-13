@@ -26,6 +26,7 @@ function preload (){
 }
 
 function create (){
+    scene = this;
     // Background Specs
     backgroundSpeed = 5;
     background = this.add.tileSprite(250, 300, 500, 600, 'background');
@@ -39,71 +40,49 @@ function create (){
     allBullets = new Group();
     entities = new Group();
 
-    // Player Setup
-    player = new Player(this);
-    entities.add(player);
-
-    // Levels
-    levels = [];
-    levels.push(new Level(this, [1,1,1,1,4,4,1,1,1,1]));
-    levels.push(new Level(this, [2,2,2,2,4,4,2,2,2,2,
-                                 1,1,1,1,1,1,1,1,1,1]));
-    levels[0].generateLevel();
-    btwLevelTime = 100;
-
     // Bullet World Bounds Event
     this.physics.world.addListener('worldbounds', hitBounds);
 
-    // Health Bar
-    playerHealthBar = this.add.rectangle(250, 590, 500, 20, 0xff0000);
-
-    // Reload Bar
-    playerReloadBar = this.add.rectangle(250, 577, 500, 6, 0x00ff00);
-
-    // Score Variables and Text
-    scoreVars = [entities.sprites.length-1, player.health];
-    scoreText = this.add.text(250,580,'Score: 0');
-    scoreText.depth = 1;
-    scoreText.x = 250 - (scoreText.width/2);
-
-    // Win Text
-    winText = this.add.text(250,250, "You Win!");
-    winText.depth = 1;
-    winText.x = 250 - (scoreText.width/2);
-    winText.visible = false;
+    // Start Game
+    gameStart();
 }
 
 function update (){
-    // Move BG
-    background.tilePositionY -= backgroundSpeed;
-
-    // Update Players and Enemies
-    entities.update();
-
-    // Update Health Bar
-    playerHealthBar.destroy();
-    playerHealthBar = this.add.rectangle(250, 590, Math.sign(player.health) === -1 ? 0 : (player.health/100) * 500, 20, 0xff0000);
-
-    // Update Reload Bar
-    playerReloadBar.destroy();
-    playerReloadBar = this.add.rectangle(250, 577, Math.sign((player.weapon.waitTime/player.weapon.fireRate)*500) === -1 ? 0 : (player.weapon.waitTime/player.weapon.fireRate)*500, 6, 0x00ff00);
-
     // Update Score
-    scoreText.text = 'Score: '+(100*(scoreVars[0] - (entities.sprites.length-1)) - 10*(scoreVars[1]-player.health));
+    try{
+        scoreText.text = 'Score: '+score;
+    } catch(err){}
 
-    // Next Level
-    if (entities.sprites.length <= 1){
-        backgroundSpeed = 15;
-        if (levels.length === 1){
-            winText.visible = true;
-        } else {
-            btwLevelTime--;
-        }
-        if (btwLevelTime<=0){
-            backgroundSpeed = 5;
-            levels.splice(0,1);
-            levels[0].generateLevel();
-            btwLevelTime = 100;
+    if (!win) {
+         // Move BG
+        background.tilePositionY -= backgroundSpeed;
+
+        // Update Players and Enemies
+        entities.update();
+
+        // Update Health Bar
+        playerHealthBar.destroy();
+        playerHealthBar = this.add.rectangle(250, 590, Math.sign(player.health) === -1 ? 0 : (player.health/100) * 500, 20, 0xff0000);
+
+        // Update Reload Bar
+        playerReloadBar.destroy();
+        playerReloadBar = this.add.rectangle(250, 577, Math.sign((player.weapon.waitTime/player.weapon.fireRate)*500) === -1 ? 0 : (player.weapon.waitTime/player.weapon.fireRate)*500, 6, 0x00ff00);
+
+        // Next Level
+        if (entities.sprites.length <= 1){
+            backgroundSpeed = 20;
+            if (levels.length === 1){
+                winText.visible = true;
+                try{player.winMove()}catch(err){};
+            } else {
+                btwLevelTime--;
+            }
+            if (btwLevelTime<=0){
+                backgroundSpeed = 5;
+                levels.splice(0,1);
+                levels[0].generateLevel();
+                btwLevelTime = 100;
+            }
         }
     }
 }
@@ -111,4 +90,42 @@ function update (){
 function hitBounds(hit){
     var spriteClass = allBullets.getClass(hit.gameObject);
     spriteClass.hitWorldBounds();
+}
+
+function gameStart(){
+    // Game Vars
+    win = false;
+    score = 0;
+    backgroundSpeed = 5
+
+    // Player Setup
+    player = new Player(scene);
+    entities.add(player);
+
+    // Levels
+    levels = [];
+    levels.push(new Level(scene, [0,0,0,0,6,0,0,0,0,0]))
+    levels.push(new Level(scene, [1,1,1,1,4,4,1,1,1,1]));
+    levels.push(new Level(scene, [2,2,2,2,4,4,2,2,2,2,
+                                  1,1,1,1,1,1,1,1,1,1]));
+    levels[0].generateLevel();
+    btwLevelTime = 100;
+
+     // Health Bar
+    playerHealthBar = scene.add.rectangle(250, 590, 500, 20, 0xff0000);
+
+    // Reload Bar
+    playerReloadBar = scene.add.rectangle(250, 577, 500, 6, 0x00ff00);
+
+    // Score Variables and Text
+    scoreVars = [entities.sprites.length-1, player.health];
+    scoreText = scene.add.text(250,580,'Score: ' + score);
+    scoreText.depth = 1;
+    scoreText.x = 250 - (scoreText.width/2);
+
+    // Win Text
+    winText = scene.add.text(250,250, "You Win!");
+    winText.depth = 1;
+    winText.x = 250 - (scoreText.width/2);
+    winText.visible = false;
 }

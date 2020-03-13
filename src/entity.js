@@ -22,11 +22,14 @@ class Entity {
     move(){}
     update(){
         if (this.health <= 0){
-        this.sprite.destroy();
-        entities.removeElement(this);
+            try {
+                this.healthBar.destroy();
+            } catch(err){};
+            this.sprite.destroy();
+            entities.removeElement(this);
         } else {
-        this.move();
-        this.weapon.waitTime--;
+            this.move();
+            this.weapon.waitTime--;
         }
     }
 }

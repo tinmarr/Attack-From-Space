@@ -16,9 +16,9 @@ class Group {
     }
     update(){
         for (var i=0;i<this.sprites.length;i++){
-        if (this.sprites[i].active){
-            this.classes[i].update();
-        }
+            if (this.sprites[i].active){
+                this.classes[i].update();
+            }
         }
     }
 }

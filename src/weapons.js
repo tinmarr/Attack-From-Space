@@ -38,7 +38,7 @@ class StartingPlayerGun extends Weapon {
 
 class OpGun extends Weapon {
 	constructor(holderBulletGroup, position, holderClass){
-		super(100, 0, 1000, 'bullet', holderBulletGroup, position, holderClass);
+		super(100, 1, 1000, 'bullet', holderBulletGroup, position, holderClass);
 	}
 }
 

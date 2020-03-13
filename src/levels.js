@@ -1,17 +1,11 @@
-// 10 x 12 array
-// 0: Empty
-// 1: Basic
-// 2: Medium
-// 3: Hard
-// 4: Sniper
-// 5: Bomber
+// 10 x 12 array max
 
 class Level {
 	constructor(scene, enemyArray){
         this.scene = scene;
 		this.boxSize = 50;
 		this.array = enemyArray;
-		this.conversions = [null, BasicEnemy, MediumEnemy, HardEnemy, SniperEnemy, BomberEnemy];
+		this.conversions = [null, BasicEnemy, MediumEnemy, HardEnemy, SniperEnemy, BomberEnemy, Boss1];
     }
     generateLevel(){
         for (var i=0;i<this.array.length;i++){
