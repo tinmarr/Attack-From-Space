@@ -2,9 +2,12 @@
 ### This game is a work in progress.
 This is a Galaga style shooter game using the Phaser game framework.
 
-# Upcoming Features
-1. Menu
-2. Upgrades
+# Todo
+1. Boss Levels
+2. Other Sprites
+3. Lots of Levels (Add Text Import)
+4. Menu
+5. Upgrades
 
 # Changelog
 v0.6 March 12, 2020
