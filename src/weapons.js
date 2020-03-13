@@ -16,10 +16,10 @@ class Weapon {
 	}
 	shoot(){
 		if (this.waitTime <= 0) {
-      var bullet = new Bullet(this.holderClass.sprite.x, this.holderClass.sprite.y-(this.position*32), this.animation,this.damage,0, -1*this.position*this.bulletSpeed,this.holderClass.scene);
-      this.holderBulletGroup.add(bullet);
-      allBullets.add(bullet);
-      this.waitTime = this.fireRate;
+            var bullet = new Bullet(this.holderClass.sprite.x, this.holderClass.sprite.y-(this.position*32), this.animation,this.damage,0, -1*this.position*this.bulletSpeed,this.holderClass.scene);
+            this.holderBulletGroup.add(bullet);
+            allBullets.add(bullet);
+            this.waitTime = this.fireRate;
     }
 	}
 }
@@ -68,10 +68,10 @@ class Bomb extends Weapon {
 		if (this.waitTime <= 0) {
 			for (var i=0;i<5;i++){
 				var bullet = new Bullet((this.holderClass.sprite.x-20)+(i*10), this.holderClass.sprite.y-(this.position*32), this.animation,this.damage,0, -1*this.position*this.bulletSpeed,this.holderClass.scene);
-	      this.holderBulletGroup.add(bullet);
-	      allBullets.add(bullet);
+                this.holderBulletGroup.add(bullet);
+                allBullets.add(bullet);
 			}
-      this.waitTime = this.fireRate;
+        this.waitTime = this.fireRate;
     }
 	}
 }

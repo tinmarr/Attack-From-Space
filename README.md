@@ -3,13 +3,15 @@
 This is a Galaga style shooter game using the Phaser game framework.
 
 # Upcoming Features
-1. More enemies (Goal of 5-6 + A 2-3 bosses)
-2. Enemy waves
-3. Menu
-4. Upgrades
+1. Menu
+2. Upgrades
 
 # Changelog
-v0.5 March 11, 2020
+v0.6 March 12, 2020
+* Add a level class
+* Add 2 starting levels
+
+v0.5 March 12, 2020
 * Organize files
 * Add Sniper, Bomber, Medium, and Hard Enemy
 
