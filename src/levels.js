@@ -3,8 +3,8 @@
 class Level {
 	constructor(scene, enemyArray){
         this.scene = scene;
-		this.boxSize = 50;
-		this.array = enemyArray;
+        this.boxSize = 50;
+        this.array = scene.cache.text.get(enemyArray).split('').filter((e,i,l)=>{return e !== '\n'}).map(Number);
 		this.conversions = [null, BasicEnemy, MediumEnemy, HardEnemy, SniperEnemy, BomberEnemy, Boss1];
     }
     generateLevel(){

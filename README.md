@@ -14,6 +14,7 @@ v0.7 March 13, 2020
 * Add a boss
 * Add a win screen
 * Add new gun
+* Add sprites for all non-boss enemies and bullets
 
 v0.6 March 12, 2020
 * Add a level class

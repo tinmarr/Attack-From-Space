@@ -19,10 +19,21 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload (){
-	this.load.image('bullet','img/bullet.png');
-	this.load.image('player','img/blueBasic.png');
-	this.load.image('basicEnemy','img/redBasic.png');
-	this.load.image('background','img/background.png');
+    this.load.image('background','img/background.png');
+
+	this.load.image('player','img/players/player.png');
+    this.load.image('easy','img/players/easy.png');
+    this.load.image('medium','img/players/medium.png');
+    this.load.image('hard','img/players/hard.png');
+    this.load.image('sniper','img/players/sniper.png');
+    this.load.image('bomber','img/players/bomber.png');
+
+    this.load.image('blue','img/bullets/blueBullet.png');
+    this.load.image('red','img/bullets/redBullet.png');
+    this.load.image('green','img/bullets/greenBullet.png');
+    this.load.image('white','img/bullets/whiteBullet.png');
+
+    this.load.text('1', 'levels/1.txt');
 }
 
 function create (){
@@ -104,10 +115,7 @@ function gameStart(){
 
     // Levels
     levels = [];
-    levels.push(new Level(scene, [0,0,0,0,6,0,0,0,0,0]))
-    levels.push(new Level(scene, [1,1,1,1,4,4,1,1,1,1]));
-    levels.push(new Level(scene, [2,2,2,2,4,4,2,2,2,2,
-                                  1,1,1,1,1,1,1,1,1,1]));
+    levels.push(new Level(scene, '1'));
     levels[0].generateLevel();
     btwLevelTime = 100;
 

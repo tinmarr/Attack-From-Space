@@ -4,7 +4,6 @@ class Player extends Entity {
         this.scene.physics.add.collider(this.sprite, enemyBullets.sprites, this.hit);
         this.scene.physics.add.collider(this.sprite, entities.sprites, this.hit);
         this.sprite.body.collideWorldBounds = true;
-        this.sprite.setAngle();
         this.currentGunType = gunType;
         this.changeGunType = gunType;
         this.weapon = new (stringToWeapon(gunType))(playerBullets, 1, this);

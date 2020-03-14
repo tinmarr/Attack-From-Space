@@ -7,7 +7,6 @@ class Entity {
         this.scene.physics.add.collider(this.sprite, playerBullets.sprites, this.hit);
         this.initial = {x:x,y:y};
         this.sprite.name = 'entity';
-        this.sprite.setAngle(180);
         this.weapon = new (stringToWeapon(gunType))(enemyBullets, -1, this);
     }
     hit(entitySprite, bulletSprite){

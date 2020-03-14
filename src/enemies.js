@@ -3,7 +3,7 @@
 // - If you want different weapon/health specifications, do that here
 // - Add a move function
 class BasicEnemy extends Entity {
-  constructor(scene, x, y, animation='basicEnemy', health=25, gunType='basic'){
+  constructor(scene, x, y, animation='easy', health=25, gunType='basic'){
 		super(scene, x, y, animation, health, gunType);
   }
   move() {
@@ -37,19 +37,19 @@ class BasicEnemy extends Entity {
 }
 
 class MediumEnemy extends BasicEnemy {
-	constructor(scene, x, y, animation='basicEnemy', health=50, gunType='medium')	{
+	constructor(scene, x, y, animation='medium', health=50, gunType='medium')	{
 		super(scene, x, y, animation, health, gunType);
 	}
 }
 
 class HardEnemy extends BasicEnemy {
-	constructor(scene, x, y, animation='basicEnemy', health=75, gunType='hard')	{
+	constructor(scene, x, y, animation='hard', health=75, gunType='hard')	{
 		super(scene, x, y, animation, health, gunType);
 	}
 }
 
 class SniperEnemy extends Entity {
-	constructor(scene, x, y, animation='basicEnemy', health=50, gunType='sniper'){
+	constructor(scene, x, y, animation='sniper', health=50, gunType='sniper'){
 		super(scene, x, y, animation, health, gunType);
 		this.nextPos = Math.random() * 500;
 	}
@@ -67,7 +67,7 @@ class SniperEnemy extends Entity {
 }
 
 class BomberEnemy extends Entity {
-	constructor(scene, x, y, animation='basicEnemy', health=50, gunType='bomb')	{
+	constructor(scene, x, y, animation='bomber', health=50, gunType='bomb')	{
 		super(scene, x, y, animation, health, gunType);
 		if (this.sprite.x <= 250){
 			this.sprite.setVelocityX(-25);
