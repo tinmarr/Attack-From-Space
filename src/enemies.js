@@ -4,7 +4,8 @@
 // - Add a move function
 class BasicEnemy extends Entity {
   constructor(scene, x, y, animation='easy', health=25, gunType='basic'){
-		super(scene, x, y, animation, health, gunType);
+        super(scene, x, y, animation, health, gunType);
+        this.sprite.name = 'easy';
   }
   move() {
     if (Math.abs(player.sprite.x - this.sprite.x) <= 10){
@@ -38,20 +39,23 @@ class BasicEnemy extends Entity {
 
 class MediumEnemy extends BasicEnemy {
 	constructor(scene, x, y, animation='medium', health=50, gunType='medium')	{
-		super(scene, x, y, animation, health, gunType);
+        super(scene, x, y, animation, health, gunType);
+        this.sprite.name = 'medium';
 	}
 }
 
 class HardEnemy extends BasicEnemy {
 	constructor(scene, x, y, animation='hard', health=75, gunType='hard')	{
-		super(scene, x, y, animation, health, gunType);
+        super(scene, x, y, animation, health, gunType);
+        this.sprite.name = 'hard';
 	}
 }
 
 class SniperEnemy extends Entity {
 	constructor(scene, x, y, animation='sniper', health=50, gunType='sniper'){
 		super(scene, x, y, animation, health, gunType);
-		this.nextPos = Math.random() * 500;
+        this.nextPos = Math.random() * 500;
+        this.sprite.name = 'sniper';
 	}
 	move(){
 		if (this.weapon.waitTime > 100 && Math.abs(this.sprite.x - this.nextPos) > 10){
@@ -68,7 +72,8 @@ class SniperEnemy extends Entity {
 
 class BomberEnemy extends Entity {
 	constructor(scene, x, y, animation='bomber', health=50, gunType='bomb')	{
-		super(scene, x, y, animation, health, gunType);
+        super(scene, x, y, animation, health, gunType);
+        this.sprite.name = 'bomber';
 		if (this.sprite.x <= 250){
 			this.sprite.setVelocityX(-25);
 		} else {

@@ -4,11 +4,15 @@ This is a Galaga style shooter game using the Phaser game framework.
 
 # Todo
 1. Boss Levels
-2. Lots of Levels
-3. Menu
-4. Upgrades
+2. Menu
+3. Upgrades
 
 # Changelog
+v1.0 March 15, 2020
+* Lots More Levels 
+* Score
+* Basic UI Buttons
+
 v0.7 March 13, 2020
 * Text levels
 * Add a boss

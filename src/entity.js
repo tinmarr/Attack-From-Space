@@ -6,16 +6,18 @@ class Entity {
         this.sprite.body.immovable = true;
         this.scene.physics.add.collider(this.sprite, playerBullets.sprites, this.hit);
         this.initial = {x:x,y:y};
-        this.sprite.name = 'entity';
         this.weapon = new (stringToWeapon(gunType))(enemyBullets, -1, this);
     }
     hit(entitySprite, bulletSprite){
         if (bulletSprite.name == 'bullet'){
             entities.getClass(entitySprite).health -= allBullets.getClass(bulletSprite).damage;
             bulletSprite.destroy();
-        } else if (bulletSprite.name == 'entity'){
+        } else {
             entities.getClass(entitySprite).health -= entities.getClass(bulletSprite).weapon.damage;
             entities.getClass(bulletSprite).health = 0;
+            if (entitySprite.name === 'player'){
+                updateScore('player');
+            }
         }
     }
     move(){}
@@ -24,6 +26,7 @@ class Entity {
             try {
                 this.healthBar.destroy();
             } catch(err){};
+            updateScore(this.sprite.name);
             this.sprite.destroy();
             entities.removeElement(this);
         } else {
