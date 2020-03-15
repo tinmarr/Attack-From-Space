@@ -1,4 +1,4 @@
-// 10 x 12 array max
+// 10 x 8 array max
 
 class Level {
 	constructor(scene, enemyArray){

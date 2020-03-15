@@ -7,6 +7,7 @@ class Player extends Entity {
         this.currentGunType = gunType;
         this.changeGunType = gunType;
         this.weapon = new (stringToWeapon(gunType))(playerBullets, 1, this);
+        this.sprite.name = 'player';
     }
     move() {
         if (this.currentGunType !== this.changeGunType){
@@ -14,46 +15,47 @@ class Player extends Entity {
             this.currentGunType = this.changeGunType;
         }
         if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.A].isDown) {
-        if(this.sprite.body.velocity.x > 0){
-            this.sprite.setAccelerationX(0);
-            this.sprite.setVelocityX(0);
-        } else {
-            this.sprite.setAccelerationX(-500);
-        }
+            if(this.sprite.body.velocity.x > 0){
+                this.sprite.setAccelerationX(0);
+                this.sprite.setVelocityX(0);
+            } else {
+                this.sprite.setAccelerationX(-500);
+            }
         } else if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.D].isDown) {
-        if(this.sprite.body.velocity.x < 0){
-            this.sprite.setAccelerationX(0);
-            this.sprite.setVelocityX(0);
+            if(this.sprite.body.velocity.x < 0){
+                this.sprite.setAccelerationX(0);
+                this.sprite.setVelocityX(0);
+            } else {
+                this.sprite.setAccelerationX(500);
+            }
         } else {
-            this.sprite.setAccelerationX(500);
+            if (Math.abs(this.sprite.body.velocity.x) <= 10){
+                this.sprite.setAccelerationX(0);
+                this.sprite.setVelocityX(0);
+            } else {
+                this.sprite.setAccelerationX(-1*Math.sign(this.sprite.body.velocity.x)*500);
+            }
         }
-        } else {
-        if (Math.abs(this.sprite.body.velocity.x) <= 10){
-            this.sprite.setAccelerationX(0);
-            this.sprite.setVelocityX(0);
-        } else {
-            this.sprite.setAccelerationX(-1*Math.sign(this.sprite.body.velocity.x)*500);
-        }
-        }
-        if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.SPACE].isDown) {
-            this.weapon.shoot();
+        if (!win){
+            if (this.scene.input.keyboard.keys[Phaser.Input.Keyboard.KeyCodes.SPACE].isDown) {
+                this.weapon.shoot();
+            }
         }
     }
     winMove(){
-        this.sprite.body.collideWorldBounds = false;
-        if (Math.abs(this.sprite.x-250)>10){
-            this.sprite.setVelocityX(Math.sign(250-this.sprite.x)*100);
-        } else {
-            this.sprite.setVelocityX(0);
-            this.sprite.setAccelerationY(-1000);
-        }
         if (this.sprite.y < -50) {
-            win = true;
             this.sprite.destroy();
             entities.removeElement(this);
             playerHealthBar.destroy();
             playerReloadBar.destroy();
             scoreText.destroy();
+        } else {
+            if (Math.abs(this.sprite.x-250)>10){
+                this.sprite.setVelocityX(Math.sign(250-this.sprite.x)*100);
+            } else {
+                this.sprite.setVelocityX(0);
+                this.sprite.setAccelerationY(-1000);
+            }
         }
     }
 }

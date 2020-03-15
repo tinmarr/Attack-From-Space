@@ -16,12 +16,13 @@ var config = {
     }
 };
 
-var game = new Phaser.Game(config);
+var game = new Phaser.Game(config),
+    numOfLevels = 5;
 
 function preload (){
     this.load.image('background','img/background.png');
 
-	this.load.image('player','img/players/player.png');
+    this.load.image('player','img/players/player.png');
     this.load.image('easy','img/players/easy.png');
     this.load.image('medium','img/players/medium.png');
     this.load.image('hard','img/players/hard.png');
@@ -32,8 +33,10 @@ function preload (){
     this.load.image('red','img/bullets/redBullet.png');
     this.load.image('green','img/bullets/greenBullet.png');
     this.load.image('white','img/bullets/whiteBullet.png');
-
-    this.load.text('1', 'levels/1.txt');
+    
+    for (var i=0;i<numOfLevels;i++){
+        this.load.text((i+1).toString(), 'levels/'+(i+1).toString()+'.txt');
+    }
 }
 
 function create (){
@@ -84,7 +87,8 @@ function update (){
             backgroundSpeed = 20;
             if (levels.length === 1){
                 winText.visible = true;
-                try{player.winMove()}catch(err){};
+                win = true;
+                player.sprite.body.collideWorldBounds = false;
             } else {
                 btwLevelTime--;
             }
@@ -95,6 +99,8 @@ function update (){
                 btwLevelTime = 100;
             }
         }
+    } else {
+        player.winMove();
     }
 }
 
@@ -115,7 +121,9 @@ function gameStart(){
 
     // Levels
     levels = [];
-    levels.push(new Level(scene, '1'));
+    for (var i=0;i<numOfLevels;i++){
+        levels.push(new Level(scene, (i+1).toString()));
+    }
     levels[0].generateLevel();
     btwLevelTime = 100;
 
@@ -136,4 +144,28 @@ function gameStart(){
     winText.depth = 1;
     winText.x = 250 - (scoreText.width/2);
     winText.visible = false;
+}
+
+function togglePause(){
+    if (scene.sys.isPaused()){
+        scene.sys.resume();
+    } else {
+        scene.sys.pause();
+    }
+}
+
+function updateScore(spriteName){
+    if (spriteName === 'easy'){
+        score += 10;
+    } else if (spriteName === 'medium'){
+        score += 20;
+    } else if (spriteName === 'hard'){
+        score += 40;
+    } else if (spriteName === 'bomber'){
+        score += 80;
+    } else if (spriteName === 'sniper'){
+        score += 160;
+    } else if (spriteName === 'player'){
+        score -= 100;
+    }
 }
