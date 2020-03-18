@@ -64,6 +64,7 @@ function create (){
 function update (){
     // Update Score
     try{
+        score = score < 0 ? 0 : score;
         scoreText.text = 'Score: '+score;
     } catch(err){}
 
