@@ -1,8 +1,12 @@
 # Changelog
+v1.1 March 18, 2020
+* Add world class
+* Restructure lots of stuff
+
 v1.0 March 15, 2020
-* Lots More Levels 
+* Lots more levels 
 * Score
-* Basic UI Buttons
+* Basic ui buttons
 
 v0.7 March 13, 2020
 * Text levels

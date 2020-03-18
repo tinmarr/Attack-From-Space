@@ -16,15 +16,15 @@ class Weapon {
 	}
 	shoot(){
 		if (this.waitTime <= 0) {
-            var bullet = new Bullet(this.holderClass.sprite.x, this.holderClass.sprite.y-(this.position*50), this.animation,this.damage,0, -1*this.position*this.bulletSpeed,this.holderClass.scene);
+            var bullet = new Bullet(this.holderClass.sprite.x, this.holderClass.sprite.y-(this.position*50), this.animation,this.damage,0, -1*this.position*this.bulletSpeed);
             this.holderBulletGroup.add(bullet);
-            allBullets.add(bullet);
+            world.allBullets.add(bullet);
             this.waitTime = this.fireRate;
     }
 	}
 }
 
-class BasicGun extends Weapon {
+class EasyGun extends Weapon {
 	constructor(holderBulletGroup, position, holderClass){
 		super(10, 150, 75, 'green', holderBulletGroup, position, holderClass);
 	}
@@ -67,8 +67,8 @@ class Bomb extends Weapon {
 }
 
 function stringToWeapon(stringType){
-	if (stringType == 'basic'){
-		return BasicGun;
+	if (stringType == 'easy'){
+		return EasyGun;
 	} else if (stringType == 'player'){
 		return PlayerGun;
 	} else if (stringType == 'op'){

@@ -21,4 +21,11 @@ class Group {
             }
         }
     }
+    destroy(){
+        for (var i=0;i<this.sprites.length;i++){
+            this.sprites[i].destroy();
+        }
+        this.classes.splice(0,this.classes.length);
+        this.sprites.splice(0,this.sprites.length);
+    }
 }
