@@ -30,9 +30,9 @@ class BasicGun extends Weapon {
 	}
 }
 
-class StartingPlayerGun extends Weapon {
+class PlayerGun extends Weapon {
 	constructor(holderBulletGroup, position, holderClass){
-		super(25, 50, 75, 'white', holderBulletGroup, position, holderClass);
+		super(25, 50, 400, 'white', holderBulletGroup, position, holderClass);
 	}
 }
 
@@ -66,16 +66,11 @@ class Bomb extends Weapon {
 	}
 }
 
-class SemiAutoSniper extends Weapon {
-    constructor(holderBulletGroup, position, holderClass){
-		super(50, 50, 1000, 'white', holderBulletGroup, position, holderClass);
-	}
-}
 function stringToWeapon(stringType){
 	if (stringType == 'basic'){
 		return BasicGun;
-	} else if (stringType == 'starting'){
-		return StartingPlayerGun;
+	} else if (stringType == 'player'){
+		return PlayerGun;
 	} else if (stringType == 'op'){
 		return OpGun;
 	} else if (stringType == 'sniper'){
@@ -86,7 +81,5 @@ function stringToWeapon(stringType){
 		return HardGun;
 	} else if (stringType == 'bomb'){
 		return Bomb;
-	} else if (stringType == 'supersniper'){
-        return SemiAutoSniper;
-    }
+	}
 }

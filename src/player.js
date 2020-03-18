@@ -1,5 +1,5 @@
 class Player extends Entity {
-    constructor(scene, x = 250, y = 550, animation = 'player', health = 100, gunType='starting') {
+    constructor(scene, x = 250, y = 550, animation = 'player', health = 100, gunType='player') {
         super(scene, x, y, animation, health, gunType);
         this.scene.physics.add.collider(this.sprite, enemyBullets.sprites, this.hit);
         this.scene.physics.add.collider(this.sprite, entities.sprites, this.hit);
