@@ -2,13 +2,13 @@
 // - Create an enemy class that extends the entity class
 // - If you want different weapon/health specifications, do that here
 // - Add a move function
-class BasicEnemy extends Entity {
-  constructor(scene, x, y, animation='easy', health=25, gunType='basic'){
-        super(scene, x, y, animation, health, gunType);
+class EasyEnemy extends Entity {
+  constructor(x, y, animation='easy', health=25, gunType='easy'){
+        super(x, y, animation, health, gunType);
         this.sprite.name = 'easy';
   }
   move() {
-    if (Math.abs(player.sprite.x - this.sprite.x) <= 10){
+    if (Math.abs(world.player.sprite.x - this.sprite.x) <= 10){
     	this.sprite.setVelocityY(200);
     } else if (this.sprite.y > 620) {
     	this.sprite.y = -20;
@@ -37,23 +37,23 @@ class BasicEnemy extends Entity {
   }
 }
 
-class MediumEnemy extends BasicEnemy {
-	constructor(scene, x, y, animation='medium', health=50, gunType='medium')	{
-        super(scene, x, y, animation, health, gunType);
+class MediumEnemy extends EasyEnemy {
+	constructor(x, y, animation='medium', health=50, gunType='medium')	{
+        super(x, y, animation, health, gunType);
         this.sprite.name = 'medium';
 	}
 }
 
-class HardEnemy extends BasicEnemy {
-	constructor(scene, x, y, animation='hard', health=75, gunType='hard')	{
-        super(scene, x, y, animation, health, gunType);
+class HardEnemy extends EasyEnemy {
+	constructor(x, y, animation='hard', health=75, gunType='hard')	{
+        super(x, y, animation, health, gunType);
         this.sprite.name = 'hard';
 	}
 }
 
 class SniperEnemy extends Entity {
-	constructor(scene, x, y, animation='sniper', health=50, gunType='sniper'){
-		super(scene, x, y, animation, health, gunType);
+	constructor(x, y, animation='sniper', health=50, gunType='sniper'){
+		super(x, y, animation, health, gunType);
         this.nextPos = Math.random() * 500;
         this.sprite.name = 'sniper';
 	}
@@ -71,8 +71,8 @@ class SniperEnemy extends Entity {
 }
 
 class BomberEnemy extends Entity {
-	constructor(scene, x, y, animation='bomber', health=50, gunType='bomb')	{
-        super(scene, x, y, animation, health, gunType);
+	constructor(x, y, animation='bomber', health=50, gunType='bomb')	{
+        super(x, y, animation, health, gunType);
         this.sprite.name = 'bomber';
 		if (this.sprite.x <= 250){
 			this.sprite.setVelocityX(-25);
