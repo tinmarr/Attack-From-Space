@@ -1,8 +1,7 @@
 # Bullet Hell Game
-#### This game is a work in progress.
 This is a Galaga style shooter game using the Phaser game framework.
 
-# Todo
+# Upcoming Features
 1. Upgrades
 1. Boss Levels
 
