@@ -6,21 +6,11 @@
     <title>Attack From Space</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script src="//cdn.jsdelivr.net/npm/phaser@3.22.0/dist/phaser.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./src/main.js"></script>
   </head>
-  <body>
+  <body onkeyup="togglePause(event);">
     <button onclick="window.location.reload();">Restart</button>
-    <button onclick="window.alert('A: move left\nD: move right\nSPACE: shoot');">Tutorial</button>
-    <button onclick="togglePause();">Pause</button>
     High Score: 3440<br>
-    <script src="src/general/group.js"></script>
-    <script src="src/general/bullet.js"></script>
-    <script src="src/general/entity.js"></script>
-    <script src="src/general/levels.js"></script>
-    <script src="src/weapons.js"></script>
-    <script src="src/player.js"></script>
-    <script src="src/enemies.js"></script>
-    <script src="src/bosses.js"></script>
-    <script src="src/world.js"></script>
-    <script src="src/main.js"></script>
   </body>
 </html>

@@ -3,11 +3,11 @@
 This is a Galaga style shooter game using the Phaser game framework.
 
 # Todo
-1. Menu
 1. Upgrades
 1. Boss Levels
 
 # Latest Update
-v1.1 March 18, 2020
-* Add world class
-* Restructure lots of stuff
+v1.2 March 19, 2020
+* Menu
+* Loading bar
+* Quicker script loading
