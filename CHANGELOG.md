@@ -1,6 +1,11 @@
 # Changelog
+v1.2 March 19, 2020
+* Menu
+* Loading bar
+* Quicker script loading
+
 v1.1 March 18, 2020
-* Add world class
+* World class
 * Restructure lots of stuff
 
 v1.0 March 15, 2020
