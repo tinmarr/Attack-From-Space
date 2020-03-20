@@ -1,4 +1,4 @@
-# Bullet Hell Game
+# Attack From Space
 This is a Galaga style shooter game using the Phaser game framework.
 
 # Upcoming Features
