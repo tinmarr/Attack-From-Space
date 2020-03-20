@@ -1,5 +1,5 @@
-class CreditMenu extends Menu {
-    constructor(){
+class EndMenu extends Menu {
+    constructor(score){
         super();
 
         this.graphics = scene.add.graphics();
@@ -11,12 +11,14 @@ class CreditMenu extends Menu {
         this.backText.x -= this.backText.width/2;
         this.backText.y -= this.backText.height/2;
         this.gameObjects.push(this.backText);
-
-        var text = 'By:\n\n     Martin Chaperot-Merino\n\n\nFont:\n\n     Press Start 2P';
-        this.mainText = scene.add.text(width/2,height/2, text,{fontFamily: '"Press Start 2P"', fontSize: '24px', align:'left'});
+        
+        var text = 'Your Score:\n\n'+score;
+        this.mainText = scene.add.text(width/2, height/2,text,{fontFamily: '"Press Start 2P"', fontSize: '24px', align:'center'})
         this.mainText.x -= this.mainText.width/2;
         this.mainText.y -= this.mainText.height/2;
         this.gameObjects.push(this.mainText);
+
+        money += score;
     }
     update(){
         if (mouse.isDown && !this.clicked){

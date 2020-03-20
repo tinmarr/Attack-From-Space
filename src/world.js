@@ -8,8 +8,9 @@ class World{
 
         // Game Vars
         this.win = false;
+        this.dead = false;
         this.score = 0;
-        this.backgroundSpeed = 5
+        backgroundSpeed = 5
 
         // Levels
         this.levels = [];
@@ -19,20 +20,20 @@ class World{
         this.btwLevelTime = 100;
 
         // Health Bar
-        this.playerHealthBar = scene.add.rectangle(250, 590, 500, 20, 0xff0000);
+        this.playerHealthBar = scene.add.rectangle(0, 0, 0, 0, 0xff0000);
 
         // Reload Bar
-        this.playerReloadBar = scene.add.rectangle(250, 577, 500, 6, 0x00ff00);
+        this.playerReloadBar = scene.add.rectangle(0, 0, 0, 0, 0x00ff00);
 
         // Score Text
-        this.scoreText = scene.add.text(250,580,'Score: ' + this.score);
+        this.scoreText = scene.add.text((width/2),height-20,'Score: ' + this.score);
         this.scoreText.depth = 1;
-        this.scoreText.x = 250 - (this.scoreText.width/2);
+        this.scoreText.x = (width/2) - (this.scoreText.width/2);
 
         // Win Text
-        this.winText = scene.add.text(250,250, "You Win!");
+        this.winText = scene.add.text((width/2),(width/2), "You Win!");
         this.winText.depth = 1;
-        this.winText.x = 250 - (this.scoreText.width/2);
+        this.winText.x = (width/2) - (this.scoreText.width/2);
         this.winText.visible = false;
     }
     createPlayer(){
@@ -47,21 +48,24 @@ class World{
     update(){
         // Update Score
         try{
-            this.score = score < 0 ? 0 : score;
-            this.scoreText.text = 'Score: '+score;
+            this.score = this.score < 0 ? 0 : this.score;
+            this.scoreText.text = 'Score: '+this.score;
         } catch(err){}
 
-        if (!this.win) {
+        if (this.dead){
+            menu = new EndMenu(this.score);
+            this.destroy();
+        } else if (!this.win) {
             // Update Players and Enemies
             this.entities.update();
 
             // Update Health Bar
             this.playerHealthBar.destroy();
-            this.playerHealthBar = scene.add.rectangle(250, 590, Math.sign(this.player.health) === -1 ? 0 : (this.player.health/100) * 500, 20, 0xff0000);
+            this.playerHealthBar = scene.add.rectangle(width/2, height-10, Math.sign(this.player.health) === -1 ? 0 : (this.player.health/this.player.initial.health) * width, 20, 0xff0000);
 
             // Update Reload Bar
             this.playerReloadBar.destroy();
-            this.playerReloadBar = scene.add.rectangle(250, 577, Math.sign((this.player.weapon.waitTime/this.player.weapon.fireRate)*500) === -1 ? 0 : (this.player.weapon.waitTime/this.player.weapon.fireRate)*500, 6, 0x00ff00);
+            this.playerReloadBar = scene.add.rectangle(width/2, height-23, Math.sign((this.player.weapon.waitTime/this.player.weapon.fireRate)*width) === -1 ? 0 : (this.player.weapon.waitTime/this.player.weapon.fireRate)*width, 6, 0x00ff00);
 
             // Next Level
             if (this.entities.sprites.length <= 1 && this.player.health > 0){

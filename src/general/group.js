@@ -24,6 +24,10 @@ class Group {
     destroy(){
         for (var i=0;i<this.sprites.length;i++){
             this.sprites[i].destroy();
+            try {
+                this.classes[i].healthBar.destroy();
+                this.classes[i].healthBarOut.destroy();
+            } catch(err){};
         }
         this.classes.splice(0,this.classes.length);
         this.sprites.splice(0,this.sprites.length);

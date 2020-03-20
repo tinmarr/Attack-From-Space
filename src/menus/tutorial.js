@@ -12,18 +12,8 @@ class TutorialMenu extends Menu {
         this.backText.y -= this.backText.height/2;
         this.gameObjects.push(this.backText);
 
-        var text = `
-        P . . . Pause
-
-
-        A . . . Move Left
-
-
-        D . . . Move Right
-
-
-        SPACE . Shoot`;
-        this.mainText = scene.add.text(175,250, text,{fontFamily: '"Press Start 2P"', fontSize: '24px', align:'left'});
+        var text = 'P . . . Pause\n\n\nA . . . Move Left\n\n\nD . . . Move Right\n\n\nSPACE . Shoot';
+        this.mainText = scene.add.text(width/2,height/2, text,{fontFamily: '"Press Start 2P"', fontSize: '24px', align:'left'});
         this.mainText.x -= this.mainText.width/2;
         this.mainText.y -= this.mainText.height/2;
         this.gameObjects.push(this.mainText);

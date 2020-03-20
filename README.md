@@ -7,7 +7,8 @@ This is a Galaga style shooter game using the Phaser game framework.
 1. Boss Levels
 
 # Latest Update
-v1.2 March 19, 2020
-* Menu
-* Loading bar
-* Quicker script loading
+v1.3 March 20, 2020
+* Finished menu
+* End screen
+* Logos
+* Money

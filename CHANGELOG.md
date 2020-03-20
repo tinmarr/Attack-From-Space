@@ -1,4 +1,10 @@
 # Changelog
+v1.3 March 20, 2020
+* Finished menu
+* End screen
+* Logos
+* Money
+
 v1.2 March 19, 2020
 * Menu
 * Loading bar

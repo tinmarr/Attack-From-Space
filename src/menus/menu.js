@@ -2,6 +2,7 @@ class Menu {
     constructor(){
         this.gameObjects = [];
         this.clicked = false;
+        backgroundSpeed = 0;
     }
     update(){}
     destroy(){

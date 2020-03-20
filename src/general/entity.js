@@ -33,6 +33,9 @@ class Entity {
                 this.healthBarOut.destroy();
             } catch(err){};
             world.updateScore(this.sprite.name);
+            if (this.sprite.name === 'player'){
+                world.dead = true;
+            }
             this.sprite.destroy();
             world.entities.removeElement(this);
         } else {

@@ -10,13 +10,13 @@ class EasyEnemy extends Entity {
   move() {
     if (Math.abs(world.player.sprite.x - this.sprite.x) <= 10){
     	this.sprite.setVelocityY(200);
-    } else if (this.sprite.y > 620) {
+    } else if (this.sprite.y > (height+20)) {
     	this.sprite.y = -20;
     } else if (Math.abs(this.sprite.y - this.initial.y) <= 5){
     	this.sprite.setVelocityY(0);
     	this.sprite.y = this.initial.y;
     }
-    if (this.initial.x <= 250) {
+    if (this.initial.x <= (width/2)) {
     	if ((this.sprite.x - this.initial.x) < -20){
     		this.sprite.setVelocityX(10);
     	} else if (this.sprite.x >= this.initial.x){
@@ -54,7 +54,7 @@ class HardEnemy extends EasyEnemy {
 class SniperEnemy extends Entity {
 	constructor(x, y, animation='sniper', health=50, gunType='sniper'){
 		super(x, y, animation, health, gunType);
-        this.nextPos = Math.random() * 500;
+        this.nextPos = Math.random() * width;
         this.sprite.name = 'sniper';
 	}
 	move(){
@@ -64,7 +64,7 @@ class SniperEnemy extends Entity {
 			this.sprite.setVelocityX(0);
 			if (this.weapon.waitTime <= 0){
 				this.weapon.shoot();
-				this.nextPos = Math.random() *500;
+				this.nextPos = Math.random() *width;
 			}
 		}
 	}
@@ -74,7 +74,7 @@ class BomberEnemy extends Entity {
 	constructor(x, y, animation='bomber', health=50, gunType='bomb')	{
         super(x, y, animation, health, gunType);
         this.sprite.name = 'bomber';
-		if (this.sprite.x <= 250){
+		if (this.sprite.x <= width/2){
 			this.sprite.setVelocityX(-25);
 		} else {
 			this.sprite.setVelocityX(25);
@@ -84,7 +84,7 @@ class BomberEnemy extends Entity {
 		this.weapon.shoot();
 		if (this.sprite.x < 0) {
 			this.sprite.setVelocityX(25);
-		} else if (this.sprite.x > 500) {
+		} else if (this.sprite.x > width) {
 			this.sprite.setVelocityX(-25);
 		}
 	}

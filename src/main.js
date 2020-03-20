@@ -1,6 +1,6 @@
 var config = {
     type: Phaser.AUTO,
-    width: window.innerWidth,
+    width: window.innerHeight,
     height: window.innerHeight,
     physics: {
         default: 'arcade',
@@ -18,7 +18,7 @@ var config = {
 
 var game = new Phaser.Game(config),
     numOfLevels = 5,
-    world, menu, width, height;
+    world, menu, width, height, pause;
 
 function preload (){
     width = this.game.canvas.width;
@@ -42,6 +42,7 @@ function preload (){
     this.load.image('background','img/background.png');
     this.load.image('coin','img/coin.png');
     this.load.image('logo','img/Logo.png');
+    this.load.image('pause','img/pause.png');
 
     this.load.image('player','img/players/player.png');
     this.load.image('easy','img/players/easy.png');
@@ -59,19 +60,17 @@ function preload (){
         this.load.text((i+1).toString(), 'levels/'+(i+1).toString()+'.txt');
     }
 
-    this.load.scripts('general',[
-        makeURL('general','bullet'),    
+    this.load.scripts('all',[
         makeURL('general','entity'),
+        makeURL('general','bullet'),    
         makeURL('general','group'),
         makeURL('general','levels'),
-    ]);
-    this.load.scripts('menus',[
         makeURL('menus','menu'),
         makeURL('menus','credit'),
         makeURL('menus','mainMenu'),
         makeURL('menus','tutorial'),
-    ]);
-    this.load.scripts('other',[
+        makeURL('menus','shop'),
+        makeURL('menus','end'),
         makeURL('','bosses'),
         makeURL('','enemies'),
         makeURL('','player'),
@@ -119,8 +118,10 @@ function togglePause(e){
     if (e.key === 'p'){
         if (scene.sys.isPaused()){
             scene.sys.resume();
+            pause.destroy();
         } else {
             scene.sys.pause();
+            pause = scene.add.sprite(width/2, height/2, 'pause');
         }
     }
 }

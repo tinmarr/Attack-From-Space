@@ -1,5 +1,5 @@
 class Player extends Entity {
-    constructor(x = 250, y = 550, animation = 'player', health = 100, gunType='player') {
+    constructor(x = width/2, y = height-50, animation = 'player', health = 100, gunType='player') {
         super(x, y, animation, health, gunType);
         scene.physics.add.collider(this.sprite, world.enemyBullets.sprites, this.hit);
         scene.physics.add.collider(this.sprite, world.entities.sprites, this.hit);
@@ -50,8 +50,8 @@ class Player extends Entity {
             world.playerReloadBar.destroy();
             world.scoreText.destroy();
         } else {
-            if (Math.abs(this.sprite.x-250)>10){
-                this.sprite.setVelocityX(Math.sign(250-this.sprite.x)*100);
+            if (Math.abs(this.sprite.x-(width/2))>10){
+                this.sprite.setVelocityX(Math.sign((width/2)-this.sprite.x)*100);
             } else {
                 this.sprite.setVelocityX(0);
                 this.sprite.setAccelerationY(-1000);
